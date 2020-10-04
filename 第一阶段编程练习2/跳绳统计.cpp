@@ -24,18 +24,25 @@
 #include <iostream>
 using namespace std;
 
-#define MAX_N 100
+#define MAX_N 200
 
 int main()
 {
-    int sec[MAX_N] = {0}, n = 0, curr = 0, cnt = 60;
+    int sec[MAX_N] = {0}, n = 0, curr = 0, cnt = 0;
     cin >> n;
     for (int i = 0; i < n; i++)
     {
         cin >> curr;
-        for (int j = curr; j < curr+3 && j < 60; j++)
-            sec[j] = 1;
+        int _cnt = 0;
+        for (int j = curr+cnt; j < 60 && j < curr+cnt+3; j++)
+            if (sec[j] <= 0)
+            {
+                sec[j] = 1;
+                _cnt += 1;
+            }
+        cnt += _cnt;
     }
+    cnt = 60;
     for (int i = 0; i < 60; i++)
         cnt -= sec[i];
     cout << cnt;
