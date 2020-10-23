@@ -45,7 +45,8 @@ void generate_prime(int _max)           // 函数将找出从2到_max的所有�
     for (int i = prime[n_prime-1] + 1; i < _max; i++)   // 遍历检查i
     {
         bool flag = true;                   // flag指示i是否是素数
-        for (int j = 0; j < n_prime; j++)   // 用prime中所有素数来检查i是否是素数
+        double sqrt_i = sqrt(i);
+        for (int j = 0; prime[j] <= sqrt_i; j++)   // 用prime中小于等于根号i的素数来检查i
             if (i % prime[j] == 0)          // i可以被素数prime[j]整除
             {
                 flag = false;               // 则i不是素数
