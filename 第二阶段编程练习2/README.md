@@ -65,14 +65,15 @@ int is_prime[MAX_N] = {0};
 void generate_prime(int n)
 {
     double sqrt_n = sqrt(n);
-    memset(is_prime, -1, sizeof(is_prime));
-    is_prime[1] = 0;
+    memset(is_prime, -1, sizeof(is_prime)); // 初始化，所有数都认为可能是素数
+    is_prime[0] = 0;    // 0不是素数
+    is_prime[1] = 0;    // 1不是素数
     for (int i = 2; i <= sqrt_n; i++)
     {
-        if(!is_prime[i])
+        if(!is_prime[i])    // i不是目前未知的最小的素数
             continue;
-        for (int j = i * 2; j <= n; j += i)
-            is_prime[j] = 0;
+        for (int j = i * 2; j <= n; j += i) // 找到目前未知的最小素数，遍历其所有整数倍
+            is_prime[j] = 0;    // 将i的整数倍全部标记为非素数
     }
 }
 ```
