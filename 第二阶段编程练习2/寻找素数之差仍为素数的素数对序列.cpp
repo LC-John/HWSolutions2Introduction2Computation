@@ -19,42 +19,42 @@
     (11,13)
 *****/
 
-#include <iostream>
-using namespace std;
+#include <cstdio>
+#include <cstring>
+#include <cmath>
 
 #define MAX_N 300000
 
-int prime[MAX_N] = {2, 3, 5, 7}, is_prime[MAX_N] = {0, 0, 1, 1, 0, 1, 0, 1}, n_prime = 4;
+int is_prime[MAX_N] = {0};
+
+void gen_prime(int n)
+{
+    double sqrt_n = sqrt(n);
+    memset(is_prime, -1, sizeof(is_prime));
+    is_prime[1] = 0;
+    for (int i = 2; i <= sqrt_n; i++)
+    {
+        if(!is_prime[i])
+            continue;
+        for (int j = i * 2; j <= n; j += i)
+            is_prime[j] = 0;
+    }
+}
 
 int main()
 {
     int m = 0, n = 0;
-    char c;
     bool output_null = true;
-    cin >> m >> c >> n;
-    for (int i = 11; i <= n; i += 2)
-    {
-        bool flag = true;
-        for (int j = 0; j < n_prime; j++)
-            if (i % prime[j] == 0)
-            {
-                flag = false;
-                break;
-            }
-        if (flag)
-        {
-            prime[n_prime++] = i;
-            is_prime[i] = 1;
-        }
-    }
+    scanf("%d,%d", &m, &n);
+    gen_prime(n);
     for (int i = m; i < n; i++)
         for (int j = i + 1; j <= n; j++)
             if (is_prime[i] && is_prime[j] && is_prime[j - i])
             {
                 output_null = false;
-                cout << "(" << i << "," << j << ")" << endl;
+                printf("(%d,%d)\n", i, j);
             }
     if (output_null)
-        cout << "NULL";
+        printf("NULL");
     return 0;
 }
