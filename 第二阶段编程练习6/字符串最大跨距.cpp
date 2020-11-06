@@ -21,6 +21,37 @@ using namespace std;
 
 #define MAX_LEN 500
 
+int find_match(char* s, char* _s, int l, int _l)
+{
+    for (int i = 0; i < l - _l; i++)
+    {
+        bool flag = true;
+        for (int j = 0; j < _l && i + j < l; j++)
+            if (s[i + j] != _s[j])
+            {
+                flag = false;
+                break;
+            }
+        if (flag)
+            return i + _l;
+    }
+    return -1;
+}
+
+char* str_reverse(char* str, int len)   // 翻转字符串
+{
+    int i = len / 2;
+    if (len % 2 == 1)
+        i++;
+    for (; i < len; i++)
+    {
+        str[i] = str[i] ^ str[len-1-i];
+        str[len-1-i] = str[i] ^ str[len-1-i];
+        str[i] = str[i] ^ str[len-1-i];
+    }
+    return str;
+}
+
 int main()
 {
     char s[MAX_LEN] = "\0", *s1 = NULL, *s2 = NULL;
@@ -44,27 +75,22 @@ int main()
     l2 = strlen(s2);
     // cout << s << endl << s1 << endl << s2 << endl;
     // 从左向右找S1的匹配
-    for (idx = 0, _st = 0; _st < l; _st++)
-        if (s1[idx] == '\0')
-            break;
-        else if (s1[idx] == s[_st])
-            idx++;
-    if (idx < l1)
+    _st = find_match(s, s1, l, l1);
+    if (_st < 0)
     {
         cout << -1;
         return 0;
     }
     // 从右向左找S2的匹配
-    for (idx = l2 - 1, _end = l - 1; _end >= 0; _end--)
-        if (idx < 0)
-            break;
-        else if (s2[idx] == s[_end])
-            idx--;
-    if (idx >= 0 || _st > _end + 1)
+    str_reverse(s, l);      // 将s和s2翻转
+    str_reverse(s2, l2);
+    _end = find_match(s, s2, l, l2);    // 重新利用find_match函数
+    if (_end < 0 || _st > l - _end)
     {
         cout << -1;
         return 0;
     }
+    _end = l - 1 - _end;    // 由于_end是在翻转的字符串上找到的匹配，因此需要翻转_end
     // cout << _st << " " << _end << endl;
     cout << _end - _st + 1;
     return 0;
