@@ -1,6 +1,7 @@
 /*****
 描述
-    遥远的古代，人们发现某些自然数之间有特殊的关系：如果两个数a和b，a的所有除本身以外的因数之和等于b,b的所有除本身以外的因数之和等于a,则称a,b是一对亲和数。
+    遥远的古代，人们发现某些自然数之间有特殊的关系：如果两个数a和b，a的所有除本身以外的因数之和等于b,
+    b的所有除本身以外的因数之和等于a,则称a,b是一对亲和数。
     例如：220和284就是一对亲和数
     220的真因子包括：1,2,4,5,10,11,20,22,44,55,110.
     1+2+4+5+10+ 11 + 20 + 22 + 44 + 55 +110 =284
@@ -20,14 +21,17 @@
 *****/
 
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 int factor_sum(int num)
 {
-    int sum = - num;
+    int sum = - num, _sqrt = int(sqrt(num));
     for (int i = 1; i * i < num; i++)
         if (num % i == 0)
             sum += i + num / i; // 加速
+    if (_sqrt * _sqrt == num)   // 特判平方根
+        sum += _sqrt;
     return sum;
 }
 
