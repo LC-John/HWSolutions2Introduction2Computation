@@ -22,7 +22,6 @@ using namespace std;
 #define MAX_N 1000
 
 int num[MAX_N] = {0}, n = 0;
-int prime[MAX_N] = {2, 3, 5, 7}, n_prime = 4;
 
 int main()
 {
@@ -30,17 +29,14 @@ int main()
     cin >> n;
     for (int i = 0; i < n; i++)
         cin >> num[i];
-    sort(num, num + n);
-    // for (int i = 0; i < n; i++)
-    //     cout << num[i] << " ";
-    // cout << endl;
+    sort(num, num + n);         // 直接排序，也可以冒泡
     for (int i = 0; i < n - 1; i++)
         for (int j = i + 1; j < n; j++)
             {
                 bool flag = true;
-                if (num[i] == 0 || num[j] == 0)
+                if (num[i] == 0 || num[j] == 0)     // 不是真分数
                     continue;
-                for (int f = 2;f <= num[i]; f++)
+                for (int f = 2;f <= num[i]; f++)    // 检查公因数
                     if (num[i] % f == 0 && num[j] % f == 0)
                     {
                         flag = false;

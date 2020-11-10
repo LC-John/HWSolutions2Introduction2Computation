@@ -71,18 +71,18 @@ int main()
             break;
         }
         ill[nxt][0] = 0;
-        for (int i = 1; i <= ill[cur][0]; i++)
+        for (int i = 1; i <= ill[cur][0]; i++)  // ´«È¾½¡¿µÕß
             for (int j = 1; j <= stu[ill[cur][i]][0]; j++)
                 if (status[stu[ill[cur][i]][j]] == HEA)
                 {
                     ill[nxt][++ill[nxt][0]] = stu[ill[cur][i]][j];
                     status[stu[ill[cur][i]][j]] = ILL;
                 }
-        for (int i = 1; i <= ill[cur][0]; i++)
+        for (int i = 1; i <= ill[cur][0]; i++)  // ÃâÒßÕßÊ§È¥ÃâÒß
             for (int j = 1; j <= stu[ill[cur][i]][0]; j++)
                 if (status[stu[ill[cur][i]][j]] == IMM)
                     status[stu[ill[cur][i]][j]] = HEA;
-        for (int i = 1; i <= ill[cur][0]; i++)
+        for (int i = 1; i <= ill[cur][0]; i++)  // ²¡ÈËÈ¬Óú²¢»ñµÃÃâÒß
             status[ill[cur][i]] = IMM;
         d++;
         cur = nxt;

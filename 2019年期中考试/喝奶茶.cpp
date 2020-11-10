@@ -26,7 +26,7 @@ using namespace std;
 
 #define MAX_N 1000
 
-bool stu[MAX_N] = {false}; // false为正面朝上
+bool stu[MAX_N] = {false}; // false为正面朝上，true为反面朝上
 int n = 150;
 
 int main()

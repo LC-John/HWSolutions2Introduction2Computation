@@ -23,8 +23,8 @@ using namespace std;
 
 #define MAX_N 1000
 
-int pos1[MAX_N] = {0}, n1 = 0;
-int pos2[MAX_N] = {0}, n2 = 0;
+int pos1[MAX_N] = {0}, n1 = 0;  // 第一个二进制数中1的位置和数目
+int pos2[MAX_N] = {0}, n2 = 0;  // 第二个二进制数中1的位置和数目
 
 int main()
 {
@@ -42,11 +42,11 @@ int main()
         }
     }
     d = 0;
-    if (n1 != n2)
+    if (n1 != n2)       // 1的数目不同
         cout << -1;
     else
     {
-        for (int i = 0; i < n1; i++)
+        for (int i = 0; i < n1; i++)    // 挪动相近的1
             d += abs(pos1[i] - pos2[i]);
         cout << d;
     }

@@ -31,8 +31,10 @@ using namespace std;
 #define MAX_N 10
 #define MAX_L 510
 
-char sub[MAX_L][MAX_N] = {'\0'}, str[MAX_L] = "\0";
-int cnt[MAX_L] = {0}, n = 0, l = 0;
+char sub[MAX_L][MAX_N] = {'\0'};    // 记录n-gram串
+int cnt[MAX_L] = {0};               // 记录n-gram串的频数
+char str[MAX_L] = "\0";             // 输入串
+int n = 0, l =0;
 
 int main()
 {
@@ -41,13 +43,13 @@ int main()
     cin.get();
     cin.getline(str, MAX_L);
     l = strlen(str);
-    strncpy(sub[n], str, n_sub);
+    strncpy(sub[n], str, n_sub);    // strncpy可以拷贝给定长度的字符串
     cnt[n++] = 1;
     for (int i = 1; i <= l - n_sub; i++)
     {
         bool found = false;
         for (int j = 0; j < n; j++)
-            if (strncmp(sub[j], str + i, n_sub) == 0)
+            if (strncmp(sub[j], str + i, n_sub) == 0)   // strncmp可以比较两个字符串的前若干位
             {
                 cnt[j]++;
                 found = true;

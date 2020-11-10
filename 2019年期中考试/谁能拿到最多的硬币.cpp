@@ -24,6 +24,11 @@ using namespace std;
 
 int val[MAX_N] = {0};
 
+/*
+找到n个硬币中，连续n-k个硬币的最小价值min_sum_k
+用n个硬币的总和sum减去min_sum_k即可
+*/
+
 int main()
 {
     int n = 0, k = 0;

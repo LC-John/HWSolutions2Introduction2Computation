@@ -17,7 +17,7 @@
 #include <iostream>
 using namespace std;
 
-int count_digit(int num, int digit)
+int count_digit(int num, int digit) // 计算数码digit在num中出现的次数
 {
     int res = 0;
     for (; num > 0; num /= 10)
