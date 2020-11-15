@@ -37,7 +37,7 @@ using namespace std;
 int xi[MAX_N], yi[MAX_N];
 char str[MAX_N][MAX_L];
 
-int f1(char c)
+int letter2digit(char c)
 {
     if (c >= 'a' && c <= 'z')
         return c - 'a';
@@ -45,8 +45,9 @@ int f1(char c)
         return c - 'A' + 26;
 }
 
-char f2(int x)
+char digit2letter(int x)
 {
+    x = (x + 52) % 52;
     if (x >= 26)
         return 'A' + x - 26;
     else
@@ -55,30 +56,32 @@ char f2(int x)
 
 char rev(char s1, char s2)
 {
-	return f2((f1(s2) - f1(s1) + 52) % 52);
+	return digit2letter(letter2digit(s2) - letter2digit(s1));
 }
 
-void solve(int a, int b)
+void crack(int a, int b)
 {
-	for (int i = 0, j = 0; str[b][j]; i++, j++)
+	for (int i = 0, j = 0; str[b][j] != '\0'; i++, j++)
     {
-		if (!str[a][i])
+		if (str[a][i] == '\0')  // a串到末尾则从头开始
 			i = 0;
 		str[b][j] = rev(str[a][i], str[b][j]);
 	}
 }
-int main() {
 
+
+int main()
+{
 	int n, m;
 	while (cin >> n >> m)
     {
 		for (int i = 0; i < m; ++i)
 			cin >> xi[i] >> yi[i];
-		for (int i = 1; i <= n; ++i)
+		for (int i = 0; i < n; ++i)
 			cin >> str[i];
 		for (int i = m - 1; i >= 0; --i)
-			solve(xi[i], yi[i]);
-		for (int i = 1; i <= n; ++i)
+			crack(xi[i] - 1, yi[i] - 1);
+		for (int i = 0; i < n; ++i)
 			cout << str[i] << endl;
 	}
 	return 0;

@@ -59,7 +59,7 @@ bool in(char *s, int index)
     {
         if (i == index) // 跳过
             continue;
-        if (strstr(str[i], s) == &str[i][0])    // 检查s是否是str[i]的前缀
+        if (strstr(str[i], s) == str[i])    // 检查s是否是str[i]的前缀
             return true;
     }
     return false;

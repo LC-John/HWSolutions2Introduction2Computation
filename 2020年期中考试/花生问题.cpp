@@ -47,17 +47,20 @@ using namespace std;
 
 #define MAX_N 40
 
-struct _LOC {
+struct _LOC
+{
 	int r;
 	int c;
 	int num;
 } peanut[MAX_N * MAX_N];
 
-bool compare (_LOC a, _LOC b) {
+bool compare (_LOC a, _LOC b)
+{
 	return a.num > b.num;
 }
 
-int main() {
+int main()
+{
 	int kase;
 	cin >> kase;
 	while (kase--)
@@ -67,14 +70,19 @@ int main() {
 		int now_r = -1, now_c = 0;
 		int m, n, time;
 	    cin >> m >> n >> time;
-	    for (int i = 0; i < m; i++) {
-	    	for (int j = 0; j < n; j++) {
-	    		cin >> peanut[np].num;
-	    		peanut[np].r = i;
-	    		peanut[np].c = j;
-	    		np++;
+	    for (int i = 0; i < m; i++)
+	    	for (int j = 0; j < n; j++)
+            {
+                int num;
+	    		cin >> num;
+	    		if (num)
+                {
+                    peanut[np].num = num;
+                    peanut[np].r = i;
+                    peanut[np].c = j;
+                    np++;
+                }
 			}
-		}
 		sort(peanut, peanut + np, compare);
 		now_c = peanut[0].c;
         remain = time;
