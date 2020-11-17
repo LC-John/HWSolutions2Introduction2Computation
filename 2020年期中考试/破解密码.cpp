@@ -54,9 +54,9 @@ char digit2letter(int x)
         return 'a' + x;
 }
 
-char rev(char s1, char s2)
+char rev(char a, char b_)
 {
-	return digit2letter(letter2digit(s2) - letter2digit(s1));
+	return digit2letter(letter2digit(b_) - letter2digit(a));
 }
 
 void crack(int a, int b)
