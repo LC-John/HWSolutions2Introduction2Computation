@@ -22,9 +22,9 @@ using namespace std;
 int func(int a, int b)
 {
 	if (a % b == 0)
-		return (b);
+		return b;
 	else
-		return (func(b, a % b));
+		return func(b, a % b);
 }
 
 int main()
