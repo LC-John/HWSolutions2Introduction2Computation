@@ -29,6 +29,8 @@ char s1[MAX_LEN] = "\0", s2[MAX_LEN] = "\0";
 int main()
 {
 	cin >> s1 + 1 >> s2 + 1;
+	s1[0] = ' ';
+	s2[0] = ' ';
 
 	dp[0][0] = true;
 	for(int i = 1; s1[i] == '*'; i++)
@@ -40,11 +42,10 @@ int main()
 			if(s1[i] == '?')
                 dp[i][j] = dp[i-1][j-1];
 			else if(s1[i] == '*')
-				dp[i][j] = (dp[i-1][j-1] || dp[i-1][j] || dp[i][j-1]);
+				dp[i][j] = (dp[i-1][j-1]||dp[i-1][j]||dp[i][j-1]);
 			else if(s1[i] == s2[j])
                 dp[i][j] = dp[i-1][j-1];
 		}
-
 	 if(dp[strlen(s1) - 1][strlen(s2) - 1])
         cout<<"matched"<<endl;
 	 else
