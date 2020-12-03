@@ -31,14 +31,14 @@
 #include <iostream>
 using namespace std;
 
-int dfs(int p, int q)
+int func(int p, int q)
 {
     if (p == 1 && q == 1)
         return 1;
     if (p < q)
-        return 2 * dfs(p, q - p);
+        return 2 * func(p, q - p);
     else
-        return 2 * dfs(p - q, q) + 1;
+        return 2 * func(p - q, q) + 1;
 }
 
 int main()
@@ -49,7 +49,7 @@ int main()
     {
         int p = 0, q = 0;
         cin >> p >> q;
-        cout << dfs(p, q) << endl;
+        cout << func(p, q) << endl;
     }
     return 0;
 }
